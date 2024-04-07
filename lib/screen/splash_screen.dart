@@ -1,7 +1,10 @@
 import 'package:ai_assistant/helper/global.dart';
+import 'package:ai_assistant/helper/pref.dart';
 import 'package:ai_assistant/screen/home_screen.dart';
+import 'package:ai_assistant/screen/onboarding_screen.dart';
 import 'package:ai_assistant/widgets/custom3_loading.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,8 +19,12 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     //đợi 2s load màn hình chờ rồi vào screen khác
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const HomeScreen()));
+      // Navigator.of(context).pushReplacement(MaterialPageRoute(
+      //     builder: (_) => Pref.showOnboarding
+      //         ? const OnboardingScreen()
+      //         : const HomeScreen()));
+      Get.off(() =>
+          Pref.showOnboarding ? const OnboardingScreen() : const HomeScreen());
     });
   }
 
